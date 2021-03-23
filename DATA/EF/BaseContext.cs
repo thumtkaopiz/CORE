@@ -5,9 +5,9 @@ namespace DATA.EF
 {
     public class BaseContext : DbContext
     {
-        // public BaseContext(DbContextOptions options) : base(options)
-        // {
-        // }
+        public BaseContext(DbContextOptions options) : base(options)
+        {
+        }
 
         public DbSet<Book> Books { get; set; }
         public DbSet<Publisher> Publishers { get; set; }
@@ -34,7 +34,7 @@ namespace DATA.EF
                 entity.HasKey(e => e.ID);
                 entity.Property(e => e.Title).IsRequired();
             //     entity.HasOne(d => d.Publisher)
-            // .WithMany(p => p.Books);
+            // .WithMany(p => p.Book);
             });
         }
     }

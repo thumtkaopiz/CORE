@@ -2,6 +2,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DATA\DATA.csproj" />
+    <ProjectReference Include="..\APPLICATION\APPLICATION.csproj" />
+    <ProjectReference Include="..\UTILITIES\UTILITIES.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

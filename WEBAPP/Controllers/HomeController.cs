@@ -8,23 +8,40 @@ using Microsoft.Extensions.Logging;
 using WEBAPP.Models;
 using DATA.EF;
 using DATA.Entities;
+using APPLICATION.Book;
+using APPLICATION.Book.DTOS;
 
 namespace WEBAPP.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        // private readonly ILogger<HomeController> _logger;
+        private readonly IPublicBookService _publicBookService;
+        public HomeController(IPublicBookService publicBookService)
         {
-            _logger = logger;
+            _publicBookService = publicBookService;
         }
 
-        public IActionResult Index()
+        // public HomeController(ILogger<HomeController> logger)
+        // {
+        //     _logger = logger;
+        // }
+        [HttpGet]
+        public async Task<IActionResult> Index()
         {
-            BaseContext db = new BaseContext();
-            var books = db.Books.ToList();
-            return View(books[0]);
+            return View(await _publicBookService.GetAll());
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(BookViewModel book)
+        {
+            return View(await _publicBookService.GetAll());
         }
 
         public IActionResult Privacy()
